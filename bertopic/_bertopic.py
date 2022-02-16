@@ -1,4 +1,5 @@
 import yaml
+import json
 import warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
 warnings.filterwarnings("ignore", category=UserWarning)
@@ -314,7 +315,11 @@ class BERTopic:
         self._map_representative_docs(original_topics=True)
         probabilities = self._map_probabilities(probabilities, original_topics=True)
         predictions = documents.Topic.to_list()
-
+        
+        #ALEX'S STUFF OPEN
+        json.dump(documents.to_json(orient='index'),open(DOCS_PATH,"w"))
+        #ALEX'S STUFF CLOSE
+        
         return predictions, probabilities
 
     def transform(self,
